@@ -1,0 +1,80 @@
+###
+CREATE TABLE IF NOT EXISTS public.category
+(
+    title text COLLATE pg_catalog."default" NOT NULL,
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    user_id bigint,
+    CONSTRAINT category_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_user_data FOREIGN KEY (user_id)
+        REFERENCES public.user_data (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.category
+    OWNER to postgres;
+###
+CREATE TABLE IF NOT EXISTS public.priority
+(
+    title text COLLATE pg_catalog."default" NOT NULL,
+    color text COLLATE pg_catalog."default" NOT NULL,
+    id bigint NOT NULL,
+    CONSTRAINT priority_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.priority
+    OWNER to postgres;
+###
+CREATE TABLE IF NOT EXISTS public.task
+(
+    title text COLLATE pg_catalog."default" NOT NULL,
+    completed numeric NOT NULL,
+    task_date timestamp with time zone,
+    id bigint NOT NULL,
+    categories_id bigint,
+    priority_id bigint,
+    user_data_id bigint,
+    CONSTRAINT task_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_category FOREIGN KEY (categories_id)
+        REFERENCES public.category (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT fk_priority FOREIGN KEY (priority_id)
+        REFERENCES public.priority (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT fk_user_data FOREIGN KEY (user_data_id)
+        REFERENCES public.user_data (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.task
+    OWNER to postgres;
+
+COMMENT ON TABLE public.task
+    IS 'Задачи пользователя';
+###
+CREATE TABLE IF NOT EXISTS public.user_data
+(
+    email text COLLATE pg_catalog."default" NOT NULL,
+    password text COLLATE pg_catalog."default" NOT NULL,
+    username text COLLATE pg_catalog."default" NOT NULL,
+    id bigint NOT NULL,
+    CONSTRAINT user_data_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.user_data
+    OWNER to postgres;
