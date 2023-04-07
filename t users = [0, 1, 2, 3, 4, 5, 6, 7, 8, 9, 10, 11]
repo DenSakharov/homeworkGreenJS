@@ -1,0 +1,18 @@
+[33mcommit e79cb3909bcd241460fbf0aefe29bb0291c29e99[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31mmaster/main[m[33m)[m
+Merge: 7e47e8f 026c50f
+Author: Денис Сахаров <sakhirsp@gmail.com>
+Date:   Mon Mar 13 23:32:55 2023 +0300
+
+    Merge branch 'main' of https://github.com/DenSakharov/homeworkGreenJS
+
+[33mcommit 7e47e8f3a081425fc943b8ae523354fff565b520[m
+Author: Денис Сахаров <sakhirsp@gmail.com>
+Date:   Mon Mar 13 23:29:56 2023 +0300
+
+    Some test script for create tables todolist else
+
+[33mcommit 026c50f290abda020ebe8489f4c960b2e027fef3[m
+Author: Денис Сахаров <sakhirsp@gmail.com>
+Date:   Mon Mar 13 23:20:14 2023 +0300
+
+    Some test script for create tables todolist
